@@ -31,6 +31,9 @@ input {
   border: 0;
   color: var(--text-color);
 }
+input:focus {
+  outline: none;
+}
 button {
   padding: 0;
   background-color: transparent;
