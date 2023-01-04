@@ -2,6 +2,8 @@
 
 Markdown Viewer Chrome Extension for Github
 
+![image](./docs/screenshot.png "image")
+
 # Why Chrome Extension?
 
 If you write Documentations with markdown based Document generation tool(eg. Hugo, Zola, Docusaurus),
@@ -17,7 +19,6 @@ if someone want to see it, just give them Github Read permission of the repo and
 - Hostingless Documentation Tool
 - Markdown file only (Compatibility. no required configs)
 - Markdown not only for Tech but also for Biz person
-
 
 # TODO
 
