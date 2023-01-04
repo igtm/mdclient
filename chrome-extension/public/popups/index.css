@@ -1,0 +1,44 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #282828;
+  --a-color: #282828;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1c1c1c;
+    --text-color: #e3e3e3;
+    --a-color: #e3e3e3;
+  }
+}
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  scroll-behavior: smooth;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--a-color);
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+.app {
+  text-align: center;
+  min-width: 150px;
+}

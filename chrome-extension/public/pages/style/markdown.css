@@ -1,0 +1,62 @@
+html {
+  font-size: 10px;
+}
+body {
+  font-size: 1.6rem; /* 16px */
+}
+p {
+  font-size: var(--size-400);
+}
+
+label {
+  font-size: var(--size-300);
+}
+
+h1 {
+  font-size: var(--fontsize-h1);
+}
+h2 {
+  font-size: var(--fontsize-h2);
+}
+h3 {
+  font-size: var(--fontsize-h3);
+}
+h4 {
+  font-size: var(--fontsize-h4);
+}
+h5 {
+  font-size: var(--fontsize-h5);
+}
+h6 {
+  font-size: var(--fontsize-h6);
+}
+
+pre {
+  display: block;
+  position: relative;
+  background-color: var(--md-code-background-color);
+  border-radius: 0.4rem;
+  overflow: auto;
+}
+pre > code {
+  display: block;
+  padding: 16px;
+  min-width: 100%;
+}
+p > code {
+  background-color: var(--md-inline-code-background-color);
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+}
+
+table {
+  border-spacing: 0px;
+}
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid var(--md-table-border-color);
+}
+table tr:nth-child(2n) {
+  background-color: var(--md-table-even-row-background-color);
+}

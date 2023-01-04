@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDClient</title>
+  <link rel="stylesheet" href="./style/variables.css" />
+  <link rel="stylesheet" href="./style/reset.css" />
+  <link rel="stylesheet" href="./style/layout.css" />
+  <link rel="stylesheet" href="./style/index.css" />
+  <link rel="stylesheet" href="./style/markdown-variables.css" />
+  <link rel="stylesheet" href="./style/markdown.css" />
+  <script src="./index.js" type="module"></script>
+  <script src="./theme-toggle.js" type="module"></script>
+</head>
+
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-left">
+        <div>Mdclient<small>v0.0.1</small></div>
+        <div class="header-github-input-form">
+          <span>github.com/</span>
+          <span><input type="text" id="github-owner" value="" placeholder="owner" /></span>
+          <span>/<input type="text" id="github-repo" value="" placeholder="repo" /></span>
+          <span>/<input type="text" id="github-dir" value="" placeholder="dir" /></span>
+          <span>#<input type="text" id="github-branch" value="" placeholder="branch" /></span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div id="theme-toggle" class="header-toggle">
+          <img data-theme-value="light" class="show_light" src="img/sunny-outline.svg" width="24px" height="24px" />
+          <img data-theme-value="dark" class="show_dark" src="img/moon-outline.svg" width="24px" height="24px" />
+        </div>
+      </div>
+    </header>
+    <aside class="sidebar">
+      <ul id="sidebar">
+      </ul>
+    </aside>
+    <main class="main">
+      <div class="content" id="content">
+        <h1>Mdclient</h1>
+        <p>Markdown Viewer for Github</p>
+        <p>Fill in Github url above and press Enter key</p>
+      </div>
+      <aside class="index">
+        <ul id="index">
+        </ul>
+      </aside>
+    </main>
+  </div>
+</body>
+
+</html>
