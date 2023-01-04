@@ -251,3 +251,35 @@ function get_list(owner, repo, dir, branch) {
       alert(e);
     });
 }
+
+/* resize github input form */
+function resizeGitubInputForm() {
+  document.querySelectorAll(".auto-resize").forEach((element) => {
+    if (element.value === "") {
+      element.parentNode.dataset.value = element.placeholder;
+    } else {
+      element.parentNode.dataset.value = element.value;
+    }
+  });
+}
+
+function listenResizeGitubInputForm() {
+  document.querySelectorAll(".auto-resize").forEach((element) => {
+    element.oninput = (e) => {
+      if (e.target.value === "") {
+        e.target.parentNode.dataset.value = e.target.placeholder;
+      } else {
+        e.target.parentNode.dataset.value = e.target.value;
+      }
+    };
+  });
+}
+
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    listenResizeGitubInputForm();
+    resizeGitubInputForm();
+  },
+  false
+);

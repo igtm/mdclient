@@ -37,12 +37,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#github-owner {
-  width: 140px;
-}
-#github-branch {
-  width: 100px;
-}
+
 .header-right {
   text-align: right;
   display: flex;
@@ -114,4 +109,29 @@
 }
 .index li:hover {
   background-color: var(--sidebar-hover-color);
+}
+
+.input-sizer::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+}
+
+.input-sizer {
+  display: inline-grid;
+  vertical-align: top;
+  align-items: center;
+  position: relative;
+}
+
+.input-sizer::after,
+.input-sizer input {
+  width: auto;
+  min-width: 1em;
+  grid-area: 1 / 2;
+  font: inherit;
+  resize: none;
+  background: none;
+  appearance: none;
+  border: none;
+  box-sizing: border-box;
 }
