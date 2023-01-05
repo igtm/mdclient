@@ -23,6 +23,10 @@
   flex-direction: row;
   gap: 8px;
 }
+.header-title {
+  display: flex;
+  align-items: center;
+}
 .header-github-input-form {
   display: flex;
   flex-direction: row;
@@ -55,7 +59,11 @@
 
 .sidebar {
   border-right: 1px solid var(--sidebar-border-color);
-  padding: 8px;
+  padding: 1rem;
+  max-height: calc(100vh - (var(--header-height) + 2rem));
+  overflow-y: auto;
+  position: sticky;
+  top: calc(var(--header-height));
 }
 
 .sidebar li {
@@ -86,29 +94,40 @@
   grid-template-columns: 75% 25%;
   grid-template-areas: "content index";
 
-  padding: 16px;
+  padding: 1rem;
 }
 
 .content {
   grid-area: content;
 }
-
+.content {
+  padding: 0 2rem 0 1rem;
+}
 .index {
   grid-area: index;
 }
-
+.index > ul {
+  max-height: calc(100vh - (var(--header-height) + 2rem));
+  overflow-y: auto;
+  position: sticky;
+  top: calc(var(--header-height));
+}
 .index > ul {
   border-left: 1px solid var(--sidebar-border-color);
-  padding-left: 8px;
+  padding: 0.5rem;
 }
 .index li {
   color: #77757a;
   border-radius: 4px;
-  padding: 4px 8px;
+  margin: 0.5rem;
   cursor: pointer;
 }
 .index li:hover {
   background-color: var(--sidebar-hover-color);
+}
+.index li > a {
+  padding: 0.5rem;
+  display: block;
 }
 
 .input-sizer::after {
