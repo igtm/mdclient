@@ -3,7 +3,7 @@
   display: grid;
   gap: 0px;
   grid-template-columns: 300px calc(100% - 300px);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: var(--header-height) 1fr;
   grid-template-areas:
     "header header"
     "sidebar  main";

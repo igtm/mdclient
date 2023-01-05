@@ -240,6 +240,7 @@ function get_list(owner, repo, dir, branch) {
       };
 
       const sidebar = document.getElementById("sidebar");
+      sidebar.innerHTML = "";
 
       // get updated element
       const updatedSidebar = tree.reduce(recursiveUl, sidebar);
