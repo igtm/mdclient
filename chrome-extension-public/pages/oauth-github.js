@@ -1,7 +1,7 @@
 // const ChromeExtensionID = "ojnbcfjllpnmhfmljgpeajhpmjgpkken"; // local
 const ChromeExtensionID = "jfbecbjclfjnbbblkidiliaoonknndlj"; // prd
-const GithubOauthAppClientID = "824f2d33e5b53d97609c";
-const GithubOauthAppClientSecret = "858147d6085f63540c5d1b5dc7c9e5605dde3182";
+const GithubOauthAppClientID = "${GithubOauthAppClientID}";
+const GithubOauthAppClientSecret = "${GithubOauthAppClientSecret}";
 
 window.addEventListener(
   "DOMContentLoaded",
