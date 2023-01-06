@@ -6,9 +6,12 @@ const GET_API_URL = (owner, repo, path) =>
   `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
 function withAuthHeader() {
+  const oauthAccessToken = localStorage.getItem("github-oauth-access-token");
+  if (!oauthAccessToken) {
+    return {};
+  }
   return {
-    // FIXME:
-    //Authorization: `Bearer ${TOKEN}`,
+    Authorization: `Bearer ${oauthAccessToken}`,
   };
 }
 

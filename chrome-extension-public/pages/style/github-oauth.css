@@ -1,0 +1,12 @@
+.show_unsignedin {
+  display: flex;
+}
+.show_signedin {
+  display: none;
+}
+[data-github-signedin="true"] .show_unsignedin {
+  display: none;
+}
+[data-github-signedin="true"] .show_signedin {
+  display: flex;
+}
