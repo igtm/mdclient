@@ -1,4 +1,4 @@
-# Mdclient
+# MDClient
 
 Markdown Viewer Chrome Extension for Github
 
