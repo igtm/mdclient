@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MDClient",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Markdown Viewer Chrome Extension for Github",
   "icons": {
     "16": "images/icon-16.png",
@@ -12,6 +12,8 @@
   "action": {
     "default_popup": "popups/index.html"
   },
+  "host_permissions": ["https://github.com/"],
+  "permissions": ["identity"],
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   }

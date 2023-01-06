@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="./style/reset.css" />
   <link rel="stylesheet" href="./style/layout.css" />
   <link rel="stylesheet" href="./style/index.css" />
+  <link rel="stylesheet" href="./style/github-oauth.css" />
   <link rel="stylesheet" href="./style/markdown-variables.css" />
   <link rel="stylesheet" href="./style/markdown.css" />
+  <script src="./oauth-github.js" type="module"></script>
   <script src="./index.js" type="module"></script>
   <script src="./theme-toggle.js" type="module"></script>
 </head>
@@ -34,6 +36,10 @@
         </div>
       </div>
       <div class="header-right">
+        <div id="github-oauth-signin" class="show_unsignedin header-github-link"><span>Sign in</span><img
+            src="img/logo-github.svg" width="24px" height="24px" /></div>
+        <div id="github-oauth-change-permission" class="show_signedin header-github-link"><img src="img/logo-github.svg"
+            width="24px" height="24px" /></div>
         <div id="theme-toggle" class="header-toggle">
           <img data-theme-value="light" class="show_light" src="img/sunny-outline.svg" width="24px" height="24px" />
           <img data-theme-value="dark" class="show_dark" src="img/moon-outline.svg" width="24px" height="24px" />
@@ -46,9 +52,10 @@
     </aside>
     <main class="main">
       <div class="content" id="content">
-        <h1>Mdclient</h1>
+        <h1>MDClient</h1>
         <p>Markdown Viewer for Github</p>
         <p>Fill in Github url above and press Enter key</p>
+        <p>If you want to read Private Repository, sign in to Github from the upper right button</p>
       </div>
       <aside class="index">
         <ul id="index">
