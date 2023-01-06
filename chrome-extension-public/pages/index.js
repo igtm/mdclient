@@ -153,15 +153,12 @@ function get_list(owner, repo, dir, branch) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
-
       const paths = data.tree
         // only target dir
         .filter((d) => dir === "" || d.path.indexOf(dir) === 0)
         // only .md
         .filter((d) => d.path.indexOf(".md") === d.path.length - 3)
         .map((d) => {
-          console.log(d);
           if (dir === "") {
             return d.path;
           }
@@ -209,9 +206,7 @@ function get_list(owner, repo, dir, branch) {
       }, []);
     })
     .then((tree) => {
-      console.log(tree);
       const recursiveUl = (sidebar, d) => {
-        console.log(d);
         if (d.is_dir) {
           const li = document.createElement("li");
           const ul = document.createElement("ul");
@@ -242,10 +237,8 @@ function get_list(owner, repo, dir, branch) {
       const sidebar = document.getElementById("sidebar");
       sidebar.innerHTML = "";
 
-      // get updated element
-      const updatedSidebar = tree.reduce(recursiveUl, sidebar);
-
-      console.log(updatedSidebar);
+      // updated element
+      tree.reduce(recursiveUl, sidebar);
     })
     .catch((e) => {
       console.error(e);
