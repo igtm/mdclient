@@ -15,7 +15,7 @@ jobs:
       - name: set production environment variables
         shell: bash
         run: |
-          ll
+          ls -l
           envbed -f chrome-extension-public/pages/constants.example.js -p MDCLIENT__ -o chrome-extension-public/pages/constants.js
       - name: Run build
         shell: bash
