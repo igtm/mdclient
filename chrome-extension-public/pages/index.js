@@ -60,6 +60,9 @@ function onGithubKeydown(e) {
   if (e.keyCode === 13) {
     console.log("enter");
 
+    // clear referer hash
+    location.hash = "";
+
     const githubOwner = document.getElementById("github-owner");
     const githubRepo = document.getElementById("github-repo");
     const githubDir = document.getElementById("github-dir");
@@ -100,6 +103,60 @@ function onGithubKeydown(e) {
   }
 }
 
+function get_github_splitted_from_url(url) {
+  if (is_repo_page(url)) {
+    const githubURL = new URL(url);
+    return githubURL.pathname.split("/").slice(1);
+  } else {
+    return ["", ""];
+  }
+}
+function is_repo_page(url) {
+  if (!url) {
+    return false;
+  }
+  const u = new URL(url);
+  if (u.hostname !== "github.com") {
+    return false;
+  }
+  if (
+    u.pathname.indexOf("/pulls") === 0 ||
+    u.pathname.indexOf("/issues") === 0 ||
+    u.pathname.indexOf("/codespaces") === 0 ||
+    u.pathname.indexOf("/marketplace") === 0 ||
+    u.pathname.indexOf("/explore") === 0 ||
+    u.pathname.indexOf("/topics") === 0 ||
+    u.pathname.indexOf("/notifications") === 0 ||
+    u.pathname.indexOf("/new") === 0 ||
+    u.pathname.indexOf("/organizations") === 0 ||
+    u.pathname.indexOf("/users") === 0 ||
+    u.pathname.indexOf("/settings") === 0 ||
+    u.pathname.indexOf("/sponsors") === 0 ||
+    u.pathname.indexOf("/account") === 0 ||
+    u.pathname.indexOf("/search") === 0
+  ) {
+    return false;
+  }
+  return (u.pathname.match(/\//g) || []).length >= 2;
+}
+function get_branch_from_url(splittedPath) {
+  if (splittedPath.length >= 4) {
+    if (splittedPath[2] === "tree" || splittedPath[2] === "blob") {
+      return splittedPath[3];
+    }
+  }
+  return "";
+}
+function get_dir_from_url(splittedPath) {
+  if (splittedPath[2] === "tree" && splittedPath.length >= 5) {
+    return splittedPath.slice(4).join("/") + "/";
+  }
+  if (splittedPath[2] === "blob" && splittedPath.length >= 6) {
+    return splittedPath.slice(4, splittedPath.length - 1).join("/") + "/";
+  }
+  return "";
+}
+
 window.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -112,11 +169,23 @@ window.addEventListener(
     githubRepo.onkeydown = onGithubKeydown;
     githubDir.onkeydown = onGithubKeydown;
     githubBranch.onkeydown = onGithubKeydown;
-    // retrieve value from localstorage
-    githubOwner.value = localStorage.getItem("github-owner");
-    githubRepo.value = localStorage.getItem("github-repo");
-    githubDir.value = localStorage.getItem("github-dir");
-    githubBranch.value = localStorage.getItem("github-branch") || "master";
+    // retrieve value
+    const params = new URLSearchParams(location.hash.replace("#", "?"));
+    const url = params.get("url");
+    if (is_repo_page(url)) {
+      // retrieve value from queryparameters (optional)
+      const splittedPath = get_github_splitted_from_url(url);
+      githubOwner.value = splittedPath[0];
+      githubRepo.value = splittedPath[1];
+      githubDir.value = get_dir_from_url(splittedPath);
+      githubBranch.value = get_branch_from_url(splittedPath) || "master";
+    } else {
+      // retrieve value from localstorage
+      githubOwner.value = localStorage.getItem("github-owner");
+      githubRepo.value = localStorage.getItem("github-repo");
+      githubDir.value = localStorage.getItem("github-dir");
+      githubBranch.value = localStorage.getItem("github-branch") || "master";
+    }
 
     // get list
     if (
