@@ -6,9 +6,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #1c1c1c;
-    --text-color: #e3e3e3;
-    --a-color: #e3e3e3;
+    color-scheme: dark;
+    --background-color: #0d1117;
+    --text-color: #c9d1d9;
+    --a-color: #c9d1d9;
   }
 }
 html,
@@ -16,6 +17,8 @@ body {
   margin: 0px;
   padding: 0px;
   scroll-behavior: smooth;
+  font-family: sans-serif;
+  font-size: 1rem;
 
   background-color: var(--background-color);
   color: var(--text-color);
@@ -28,17 +31,37 @@ a {
 
 ul {
   padding-left: 0;
+  margin: 0;
 }
 
 li {
   list-style: none;
+  text-align: center;
+  margin: 0px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px;
+}
+li + li {
+  border-top: 1px solid #282828;
+}
+
+li a {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+li a img {
+  padding-right: 4px;
 }
 
 .app {
   text-align: center;
   min-width: 150px;
+}
+
+.hide {
+  display: none;
 }
