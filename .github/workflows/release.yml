@@ -14,9 +14,7 @@ jobs:
         run: sudo curl -sfL https://raw.githubusercontent.com/igtm/envbed/master/install.sh | sudo sh -s -- -b=/usr/local/bin -v=v0.0.1
       - name: set production environment variables
         shell: bash
-        run: |
-          ls -l
-          envbed -f chrome-extension-public/pages/constants.example.js -p MDCLIENT__ -o chrome-extension-public/pages/constants.js
+        run: /usr/local/bin/envbed -f chrome-extension-public/pages/constants.example.js -p MDCLIENT__ -o chrome-extension-public/pages/constants.js
       - name: Run build
         shell: bash
         run: make zip
