@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - name: set production environment variables
         shell: bash
-        run: envbed -f chrome-extension-public/pages/constants.example.js -p MDCLIENT__ -o chrome-extension-public/pages/constants.js
+        run: envbed -f chrome-extension-public/pages/js/constants.example.js -p MDCLIENT__ -o chrome-extension-public/pages/js/constants.js
         env:
           MDCLIENT__ChromeExtensionID: ${{ secrets.MDCLIENT__ChromeExtensionID }}
           MDCLIENT__GithubOauthAppClientID: ${{ secrets.MDCLIENT__GithubOauthAppClientID }}
