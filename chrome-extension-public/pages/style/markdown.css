@@ -54,7 +54,6 @@ pre {
 pre > code {
   display: block;
   padding: 16px;
-  min-width: 100%;
 }
 p > code {
   background-color: var(--md-inline-code-background-color);

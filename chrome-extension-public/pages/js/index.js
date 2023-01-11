@@ -51,6 +51,9 @@ function get_object(e) {
   ]).then(([body]) => {
     const html = convert_md2html(body);
     const heading_html = get_heading_li(body);
+    content.dataset.owner = owner;
+    content.dataset.repo = repo;
+    content.dataset.path = path;
     content.innerHTML = html;
     index.innerHTML = heading_html;
 
@@ -203,6 +206,9 @@ window.addEventListener(
         githubBranch.value
       );
     }
+
+    // replace private relative image to base64 img
+    onMutationObserver();
   },
   false
 );
@@ -319,6 +325,95 @@ function get_list(owner, repo, dir, branch) {
       console.error(e);
       alert(e);
     });
+}
+
+function get_raw_content(owner, repo, path) {
+  // fetch
+  return window
+    .fetch(GET_API_URL(owner, repo, path), {
+      method: "GET",
+      headers: {
+        ...withAuthHeader(),
+      },
+    })
+    .then((res) => {
+      if (!res.ok) {
+        console.error("res.ok:", res.ok);
+        console.error("esponse.status:", res.status);
+        console.error("esponse.statusText:", res.statusText);
+        throw new Error(res.statusText);
+      }
+      return res.json();
+    })
+    .then((d) => d.content)
+    .catch((e) => {
+      console.error(e);
+      alert(e.message);
+    });
+}
+
+function onMutationObserver() {
+  const content = document.getElementById("content");
+  // (変更を監視する) オブザーバーのオプション
+  const config = { attributes: false, childList: true, subtree: false };
+
+  // 変更が発見されたときに実行されるコールバック関数
+  const callback = function (mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === "childList") {
+        const imgs = content.getElementsByTagName("img");
+        Array.prototype.map.call(imgs, (img) => {
+          const src = img.getAttribute("src");
+          if (is_relative_url(src)) {
+            get_raw_content(
+              content.dataset.owner,
+              content.dataset.repo,
+              get_abspath_from_relative(content.dataset.path, src)
+            ).then((b64) => {
+              img.src = `data:${get_mimetype_from_ext(src)};base64,${b64}`;
+            });
+          }
+        });
+      }
+    }
+  };
+
+  // コールバック関数に結びつけられたオブザーバーのインスタンスを生成
+  const observer = new MutationObserver(callback);
+
+  // 対象ノードの設定された変更の監視を開始
+  observer.observe(content, config);
+}
+
+function is_relative_url(url) {
+  return !(
+    url.indexOf("http://") === 0 ||
+    url.indexOf("https://") === 0 ||
+    url.indexOf("//") === 0 ||
+    url.indexOf("data:") === 0
+  );
+}
+
+function get_abspath_from_relative(basepath, relativepath) {
+  const pathname = new URL(relativepath, `https://example.com/${basepath}`)
+    .pathname;
+  // first slash should be removed here
+  if (pathname.indexOf("/") === 0) {
+    return pathname.substring(1);
+  }
+  return pathname;
+}
+
+function get_mimetype_from_ext(filename) {
+  if (filename.indexOf(".jpg") !== -1 || filename.indexOf(".jpeg") !== -1) {
+    return "image/jpeg";
+  } else if (filename.indexOf(".png") !== -1) {
+    return "image/png";
+  } else if (filename.indexOf(".gif") !== -1) {
+    return "image/gif";
+  } else {
+    return "image/jpeg";
+  }
 }
 
 /* resize github input form */
