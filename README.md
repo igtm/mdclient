@@ -2,7 +2,7 @@
 
 Markdown Viewer Chrome Extension for Github
 
-![image](./docs/screencast.gif "image")
+![image](https://user-images.githubusercontent.com/6331737/211880083-20d4dec0-17ed-446b-b490-a8640282a554.gif "image")
 
 # Why Chrome Extension?
 
