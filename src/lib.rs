@@ -57,7 +57,14 @@ pub fn convert_md2html(md: &str) -> String {
             Token::StartTag(tag) => {
                 let mut attrs = String::new();
                 for (key, val) in tag.attributes {
-                  attrs.push_str(format!(" {}=\"{}\"", String::from_utf8_lossy(&key), String::from_utf8_lossy(&val)).as_str());
+                    attrs.push_str(
+                        format!(
+                            " {}=\"{}\"",
+                            String::from_utf8_lossy(&key),
+                            String::from_utf8_lossy(&val)
+                        )
+                        .as_str(),
+                    );
                 }
                 match String::from_utf8((tag.name).to_vec()).unwrap().as_str() {
                     "h1" | "h2" | "h3" | "h4" | "h5" | "h6" => {
@@ -72,7 +79,13 @@ pub fn convert_md2html(md: &str) -> String {
                         .unwrap();
                     }
                     _ => {
-                        write!(new_html, "<{}{}>", String::from_utf8_lossy(&tag.name), attrs).unwrap();
+                        write!(
+                            new_html,
+                            "<{}{}>",
+                            String::from_utf8_lossy(&tag.name),
+                            attrs
+                        )
+                        .unwrap();
                     }
                 }
             }
