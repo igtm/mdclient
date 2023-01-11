@@ -19,8 +19,3 @@ if someone want to see it, just give them Github Read permission of the repo and
 - Hostingless Documentation Tool
 - Markdown file only (Compatibility. no required configs)
 - Markdown not only for Tech but also for Biz person
-
-# TODO
-
-- [ ] render from url (permanent link)
-- [ ] Github extension (add buttom to new tab)
