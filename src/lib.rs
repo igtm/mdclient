@@ -55,20 +55,24 @@ pub fn convert_md2html(md: &str) -> String {
     for token in Tokenizer::new(html.as_str()).infallible() {
         match token {
             Token::StartTag(tag) => {
+                let mut attrs = String::new();
+                for (key, val) in tag.attributes {
+                  attrs.push_str(format!(" {}=\"{}\"", String::from_utf8_lossy(&key), String::from_utf8_lossy(&val)).as_str());
+                }
                 match String::from_utf8((tag.name).to_vec()).unwrap().as_str() {
                     "h1" | "h2" | "h3" | "h4" | "h5" | "h6" => {
                         heading_idx += 1;
-                        // FIXME: tag.attributes
                         write!(
                             new_html,
-                            "<{} id=\"MDC__{}\">",
+                            "<{} id=\"MDC__{}\"{}>",
                             String::from_utf8_lossy(&tag.name),
-                            heading_idx
+                            heading_idx,
+                            attrs
                         )
                         .unwrap();
                     }
                     _ => {
-                        write!(new_html, "<{}>", String::from_utf8_lossy(&tag.name)).unwrap();
+                        write!(new_html, "<{}{}>", String::from_utf8_lossy(&tag.name), attrs).unwrap();
                     }
                 }
             }

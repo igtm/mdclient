@@ -53,6 +53,9 @@ function get_object(e) {
     const heading_html = get_heading_li(body);
     content.innerHTML = html;
     index.innerHTML = heading_html;
+
+    // syntax highlight (highlight.js)
+    hljs.highlightAll();
   });
 }
 
