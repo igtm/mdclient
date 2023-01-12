@@ -22,6 +22,7 @@ function get_object(e) {
   const path = dir + e.target.dataset.path;
   const content = document.getElementById("content");
   const index = document.getElementById("index");
+  bar.animate(0.7);
   Promise.all([
     // fetch
     window
@@ -38,11 +39,17 @@ function get_object(e) {
           console.error("esponse.statusText:", res.statusText);
           throw new Error(res.statusText);
         }
+
+        bar.animate(1, { duration: 800 });
+        setTimeout(() => {
+          bar.set(0);
+        }, 1000);
         return res.json();
       })
       .then((d) => decodeURIComponent(escape(window.atob(d.content))))
       .catch((e) => {
         console.error(e);
+        bar.animate(0);
         alert(e.message);
       }),
 
@@ -213,7 +220,16 @@ window.addEventListener(
   false
 );
 
+// progressbar.js
+var bar = new ProgressBar.Line(".top-loading-bar", {
+  easing: "easeInOut",
+  color: "#15B5B0",
+  strokeWidth: 0.15,
+  duration: 3000,
+});
+
 function get_list(owner, repo, dir, branch) {
+  bar.animate(0.7);
   window
     .fetch(LIST_API_URL(owner, repo, branch), {
       method: "GET",
@@ -231,6 +247,11 @@ function get_list(owner, repo, dir, branch) {
         }
         throw new Error(res.statusText);
       }
+
+      bar.animate(1, { duration: 800 });
+      setTimeout(() => {
+        bar.set(0);
+      }, 1000);
       return res.json();
     })
     .then((data) => {
@@ -323,6 +344,7 @@ function get_list(owner, repo, dir, branch) {
     })
     .catch((e) => {
       console.error(e);
+      bar.animate(0);
       alert(e);
     });
 }
