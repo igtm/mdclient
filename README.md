@@ -19,3 +19,12 @@ if someone want to see it, just give them Github Read permission of the repo and
 - Hostingless Documentation Tool
 - Markdown file only (Compatibility. no required configs)
 - Markdown not only for Tech but also for Biz person
+
+# Supported features
+
+- [x] [CommonMark](https://commonmark.org/)
+- [x] [github flavored markdown](https://github.github.com/gfm/)
+- [x] Github Private Repository (Github OAuth App)
+- [x] [mermaid.js](https://mermaid.js.org/#/)
+- [x] code syntaxhighlighting with [highlightjs](https://highlightjs.org/)
+- [x] Darkmode
