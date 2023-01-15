@@ -1,4 +1,6 @@
+import mermaid from "/pages/js/mermaid.esm.min.mjs";
 import init, { convert_md2html, get_heading_li } from "/pages/pkg/wasm.js";
+mermaid.initialize({ startOnLoad: true });
 
 const LIST_API_URL = (owner, repo, branch) =>
   `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
@@ -394,6 +396,20 @@ function onMutationObserver() {
             ).then((b64) => {
               img.src = `data:${get_mimetype_from_ext(src)};base64,${b64}`;
             });
+          }
+        });
+
+        const pres = content.getElementsByTagName("pre");
+        Array.prototype.map.call(pres, (pre) => {
+          if (pre.getAttribute("lang") === "mermaid") {
+            const id = "mmd" + Math.round(Math.random() * 10000);
+            pre.id = id;
+            const parent = pre.parentNode;
+            const next = pre.nextSibling;
+            const svg = mermaid.render(id, pre.textContent);
+            const div = document.createElement("div");
+            div.innerHTML = svg;
+            parent.insertBefore(div, next);
           }
         });
       }
