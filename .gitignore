@@ -1,3 +1,6 @@
 /target
 package.zip
 chrome-extension-public/pages/js/constants.js
+chrome-extension-public/target/*
+!chrome-extension-public/target/.gitignore
+!chrome-extension-public/target/wasm*
